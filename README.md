@@ -9,13 +9,6 @@
 > A cryptographically secure, fully client-side password generator built for the **Lenovo × BharatCares Cyber Security Capstone Project**.
 
 ---
-
-## 🌐 Live Demo
-
-👉 **[https://yourusername.github.io/SecurePass](https://yourusername.github.io/SecurePass)**
-
----
-
 ## 📌 Problem Statement
 
 **Area:** Password Management
@@ -63,7 +56,7 @@
 ### Option 1 – Direct Open
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/SecurePass.git
+git clone https://github.com/Ayush-2703/SecurePass
 
 # Open index.html in your browser
 cd SecurePass
@@ -89,10 +82,7 @@ SecurePass/
 ├── script.js           # JS – password logic, strength analysis, UI
 ├── README.md           # Project documentation
 └── screenshots/        # App screenshots (proof of work)
-    ├── homepage.png
-    ├── strength-meter.png
-    ├── batch-generator.png
-    └── password-checker.png
+
 ```
 
 ---
