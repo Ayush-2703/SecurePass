@@ -1,17 +1,28 @@
-# OS files
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+
+# Flask
+instance/
+.webassets-cache
+flask_session/
+
+# OS
 .DS_Store
 Thumbs.db
 
-# Editor files
+# IDE
 .vscode/
 .idea/
 *.swp
 *.swo
 
-# Node (if any tooling added later)
-node_modules/
-npm-debug.log
-
-# Temp files
-*.tmp
-*.bak
+# Logs
+*.log
