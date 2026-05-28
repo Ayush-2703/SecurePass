@@ -141,7 +141,7 @@ The strength checker evaluates passwords on multiple criteria:
 
 ## 👨‍💻 Author
 
-**[Your Name]**
+**Ayush Kumar Singh**
 Cyber Security Program – Lenovo × BharatCares
 
 ---
