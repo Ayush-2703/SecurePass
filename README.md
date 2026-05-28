@@ -1,149 +1,128 @@
 # 🔐 SecurePass – Random Strong Password Generator
 
-![Cyber Security](https://img.shields.io/badge/Cyber%20Security-Capstone%20Project-7c3aed?style=for-the-badge)
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![Web Crypto API](https://img.shields.io/badge/Web%20Crypto%20API-00f5c4?style=for-the-badge)
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-3.0-000000?style=for-the-badge&logo=flask&logoColor=white)
+![Cyber Security](https://img.shields.io/badge/Cyber%20Security-Capstone-7c3aed?style=for-the-badge)
 
-> A cryptographically secure, fully client-side password generator built for the **Lenovo × BharatCares Cyber Security Capstone Project**.
+> Cyber Security Capstone Project — Lenovo × BharatCares  
+> Password generation powered entirely by **Python's `secrets` module** via a **Flask** web server.
 
 ---
+
 ## 📌 Problem Statement
+**Area:** Password Management  
+**Problem:** Users create weak and predictable passwords repeatedly.  
+**Solution:** SecurePass generates cryptographically secure passwords server-side using Python's `secrets` module — far stronger than `Math.random()` in JavaScript.
 
-**Area:** Password Management
+---
 
-**Problem:** Users create weak and predictable passwords repeatedly, making their accounts vulnerable to brute-force attacks, dictionary attacks, and credential stuffing.
+## 🏗️ Project Structure
+```
+SecurePass/
+│
+├── app.py                  ← Flask app + ALL password logic (Python)
+├── requirements.txt        ← Python dependencies
+├── README.md
+├── templates/
+│   └── index.html          ← Jinja2 template (UI + fetch calls to Flask)
+└── screenshots/            ← App screenshots
+```
 
-**Solution:** SecurePass — a web-based random strong password generator that uses the browser's built-in **Web Crypto API** to generate cryptographically secure passwords instantly, with zero data stored or transmitted.
+### Why Python instead of JavaScript?
+| Feature | JavaScript `Math.random()` | Python `secrets` module |
+|---|---|---|
+| Randomness | Pseudo-random (predictable) | Cryptographically secure |
+| Security | ❌ Not safe for passwords | ✅ Designed for security |
+| Backend control | Client-side only | Full server-side logic |
 
 ---
 
 ## ✨ Features
-
-| Feature | Description |
-|---|---|
-| ⚡ **Password Generator** | Generate strong passwords with full customization |
-| 📏 **Length Control** | Slider from 8 to 32 characters |
-| 🔠 **Character Options** | Uppercase, Lowercase, Numbers, Symbols |
-| 🚫 **Exclude Ambiguous** | Remove confusing chars like `l`, `1`, `O`, `0` |
-| 📊 **Strength Indicator** | Real-time visual strength meter (Weak → Excellent) |
-| 📋 **One-Click Copy** | Copy password to clipboard instantly |
-| 🔁 **Batch Generation** | Generate 1, 3, 5, or 10 passwords at once |
-| 📜 **Session History** | View your last 10 generated passwords |
-| 🔍 **Strength Checker** | Analyze the strength of any existing password |
-| 💡 **Security Tips** | Built-in cybersecurity awareness panel |
+- ⚡ Cryptographically secure generation via `secrets.choice()`
+- 📏 Length control: 8–32 characters
+- 🔠 Uppercase, Lowercase, Numbers, Symbols toggle
+- 🚫 Exclude ambiguous characters (l, 1, O, 0)
+- 📊 Server-side strength analyser (score 0–100)
+- 📋 One-click copy to clipboard
+- 🔁 Batch generation: 1, 3, 5, or 10 passwords
+- 🔍 Real-time password strength checker
+- 💡 Cybersecurity awareness tips panel
 
 ---
 
 ## 🛠️ Technology Stack
-
-| Layer | Technology | Purpose |
-|---|---|---|
-| Frontend | HTML5 | Page structure |
-| Frontend | CSS3 | Responsive styling & animations |
-| Frontend | JavaScript (Vanilla) | Password logic & DOM manipulation |
-| Security | **Web Crypto API** | Cryptographically secure random generation |
-| Fonts | Google Fonts (Syne + Space Mono) | UI typography |
-| Hosting | GitHub Pages | Free deployment |
-
-> **No backend. No database. No tracking.** All processing happens 100% in your browser.
+| Layer | Technology |
+|---|---|
+| Backend | **Python 3** + **Flask** |
+| Password Generation | **`secrets` module** (cryptographically secure) |
+| Strength Analysis | **Pure Python** logic |
+| Template Engine | **Jinja2** |
+| Frontend | HTML5 + CSS3 (inline) |
+| API | JSON REST (`/generate`, `/check`) |
 
 ---
 
-## 🚀 How to Run Locally
+## 🚀 How to Run
 
-### Option 1 – Direct Open
 ```bash
-# Clone the repository
-git clone https://github.com/Ayush-2703/SecurePass
-
-# Open index.html in your browser
+# 1. Clone the repository
+git clone https://github.com/Ayush-2703/SecurePass.git
 cd SecurePass
-open index.html      # macOS
-start index.html     # Windows
-xdg-open index.html  # Linux
-```
 
-### Option 2 – Live Server (VS Code)
-1. Install the **Live Server** extension in VS Code
-2. Right-click `index.html` → **Open with Live Server**
-3. App opens at `http://127.0.0.1:5500`
+# 2. Install dependencies
+pip install -r requirements.txt
 
----
+# 3. Run the Flask app
+python app.py
 
-## 📁 Project Structure
-
-```
-SecurePass/
-│
-├── index.html          # Main HTML – app structure
-├── style.css           # CSS – dark theme, animations, responsive
-├── script.js           # JS – password logic, strength analysis, UI
-├── README.md           # Project documentation
-└── screenshots/        # App screenshots (proof of work)
-
+# 4. Open in browser
+# http://127.0.0.1:5000
 ```
 
 ---
 
-## 🔒 Security Approach
+## 🔗 API Endpoints
 
-SecurePass uses the **[Web Crypto API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Crypto_API)** (`crypto.getRandomValues()`) instead of `Math.random()`.
+### `POST /generate`
+```json
+// Request
+{
+  "length": 16,
+  "uppercase": true,
+  "lowercase": true,
+  "numbers": true,
+  "symbols": true,
+  "no_repeat": false,
+  "exclude_ambiguous": false,
+  "count": 3
+}
 
-| Method | Type | Safe for Passwords? |
-|---|---|---|
-| `Math.random()` | Pseudo-random | ❌ No – predictable |
-| `crypto.getRandomValues()` | Cryptographically secure | ✅ Yes – unpredictable |
+// Response
+{
+  "passwords": [
+    { "password": "X9#mK2$vQp", "strength": { "label": "Very Strong", "percent": 88, ... } }
+  ]
+}
+```
 
-This ensures generated passwords have **true entropy** and cannot be predicted or reproduced.
-
----
-
-## 📊 Password Strength Scoring
-
-The strength checker evaluates passwords on multiple criteria:
-
-- ✅ Length (8 → 12 → 16 → 20+ characters)
-- ✅ Uppercase letters present
-- ✅ Lowercase letters present
-- ✅ Numbers present
-- ✅ Symbols present
-- ✅ Character uniqueness ratio
-- ❌ Deductions for repeated characters
-- ❌ Deductions for single character type only
-
-**Strength Levels:** Weak → Moderate → Strong → Very Strong → Excellent
+### `POST /check`
+```json
+// Request  → { "password": "mypassword" }
+// Response → { "label": "Weak", "percent": 20, "score": 18, "criteria": {...} }
+```
 
 ---
 
 ## 🔭 Future Scope
-
-- [ ] Browser extension (Chrome / Firefox)
+- [ ] Deploy to Render / Railway (free Python hosting)
 - [ ] Password breach checker (HaveIBeenPwned API)
-- [ ] Encrypted local password vault
-- [ ] Mobile app (Android / iOS)
-- [ ] Multi-language support (Hindi, Tamil, Bengali)
-- [ ] AI-powered password suggestions
-- [ ] Enterprise dashboard with policy enforcement
+- [ ] Encrypted session vault
+- [ ] Mobile app with Flask API backend
 
 ---
 
 ## 👨‍💻 Author
-
-**Ayush Kumar Singh**
-Cyber Security Program – Lenovo × BharatCares
-
----
+**AYUSH KUMAR SINGH** — Cyber Security Program, Lenovo × BharatCares
 
 ## 📄 License
-
-This project is open-source and available under the [MIT License](LICENSE).
-
----
-
-## 🙏 Acknowledgements
-
-- **Lenovo** and **BharatCares** for the Capstone Project framework
-- [MDN Web Docs](https://developer.mozilla.org) for Web Crypto API documentation
-- [HaveIBeenPwned](https://haveibeenpwned.com) for breach awareness inspiration
+MIT License
